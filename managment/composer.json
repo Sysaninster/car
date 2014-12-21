@@ -1,0 +1,18 @@
+{
+    "name": "sysanin/car-managment",
+    "authors": [
+        {
+            "name": "Uladzimir Struts",
+            "email": "sysaninster@gmail.com"
+        }
+    ],
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/piotrooo/php-shell-framework"
+        }
+    ],
+    "require": {
+        "piotrooo/php-shell-framework": "1.0"
+    }
+}
