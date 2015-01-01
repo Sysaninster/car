@@ -6,12 +6,13 @@
  * Time: 21:55
  */
 
-namespace Adapter;
+namespace CarAdapter;
 
 
 use RuntimeException;
 
-class Car {
+class Car implements CarAdapterInterface
+{
 
     /**
      * The port
@@ -45,8 +46,8 @@ class Car {
 
     public function connect()
     {
-        //exec("mode {$this->getPort()} BAUD=9600 PARITY=N data=8 stop=1 xon=off");
-        $this->fp = fopen($this->getPort(), 'w+');
+//        exec("mode {$this->getPort()} BAUD=9600 PARITY=N data=8 stop=1 xon=on");
+        $this->fp = fopen($this->getPort(), 'c+b');
         if ($this->fp === false) {
             throw new RuntimeException('It can\'t open port ' . $this->getPort());
         }

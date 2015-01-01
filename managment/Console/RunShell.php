@@ -9,7 +9,8 @@
 namespace Console;
 
 
-use Adapter\Car;
+use CarAdapter\CarAdapterInterface;
+use CarAdapter\Socket;
 use Psf\Interfaces\ApplicationInterface;
 use Psf\Shell;
 
@@ -24,7 +25,7 @@ class RunShell extends Shell implements ApplicationInterface
     /**
      * The carAdapted
      *
-     * @var Car
+     * @var CarAdapterInterface
      */
     protected $carAdapted;
 
@@ -44,15 +45,15 @@ class RunShell extends Shell implements ApplicationInterface
 
     public function configure()
     {
-        $this->carAdapted = new Car();
+        $this->carAdapted = new Socket();
     }
 
     public function main()
     {
-        $this->out('Port?' . PHP_EOL);
-        $this->carAdapted->setPort($this->read());
+//        $this->out('Port?' . PHP_EOL);
+//        $this->carAdapted->setPort($this->read());
         $this->carAdapted->connect();
-        $this->out('Write commands to "' . $this->carAdapted->getPort() . '"' . PHP_EOL);
+//        $this->out('Write commands to "' . $this->carAdapted->getPort() . '"' . PHP_EOL);
         while(true) {
             $command = $this->read();
             if ($command === 'q') {
@@ -96,5 +97,6 @@ class RunShell extends Shell implements ApplicationInterface
             $rightSpeed = 0;
         }
         $this->carAdapted->run($leftSpeed, $rightSpeed);
+        $this->out("Speed:{$leftSpeed},{$rightSpeed}");
     }
 }
